@@ -271,7 +271,7 @@ export const api = {
       // Planning AI Coordinator runs on backend and inserts study_plans and plan_sessions directly to Supabase.
       return request<any>('/plans/generate', { method: 'POST', body: JSON.stringify(data) });
     },
-    completeSession: async (planId: string, sessionId: string, notes?: string) => {
+    completeSession: async (_planId: string, sessionId: string, notes?: string) => {
       const updatePayload = {
         completed: true,
         completed_at: new Date().toISOString(),

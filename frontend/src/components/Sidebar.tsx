@@ -9,8 +9,7 @@ import {
   FileQuestion,
   BarChart3,
   Terminal,
-  LogOut,
-  Database
+  LogOut
 } from 'lucide-react';
 
 interface SidebarProps {

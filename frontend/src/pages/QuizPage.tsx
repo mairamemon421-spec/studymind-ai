@@ -5,10 +5,7 @@ import {
   Sparkles, 
   CheckCircle, 
   XCircle, 
-  AlertCircle,
-  HelpCircle,
-  Clock,
-  BookOpen
+  AlertCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 

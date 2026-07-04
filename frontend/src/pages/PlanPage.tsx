@@ -5,11 +5,9 @@ import {
   Download, 
   Sparkles, 
   CheckCircle, 
-  Plus, 
   FileText,
   Clock,
-  Compass,
-  AlertCircle
+  Compass
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 

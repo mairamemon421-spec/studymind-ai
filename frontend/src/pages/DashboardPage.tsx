@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { api } from '../lib/api';
 import { 
   Trophy, 
@@ -17,7 +17,6 @@ import toast from 'react-hot-toast';
 export const DashboardPage: React.FC = () => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   const fetchProgress = async () => {
     try {

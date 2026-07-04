@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { api } from '../lib/api';
-import { Terminal, RefreshCw, ChevronLeft, ChevronRight, Play, CheckCircle2 } from 'lucide-react';
+import { Terminal, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export const AgentLogsPage: React.FC = () => {

@@ -4,9 +4,7 @@ import {
   MessageSquare, 
   Send, 
   Sparkles, 
-  BookOpen, 
   Plus,
-  ArrowDownCircle,
   HelpCircle
 } from 'lucide-react';
 import toast from 'react-hot-toast';

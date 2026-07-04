@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { Sidebar } from './Sidebar';
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, Sparkles } from 'lucide-react';
 
 export const Layout: React.FC = () => {
   const { user, loading } = useAuth();
