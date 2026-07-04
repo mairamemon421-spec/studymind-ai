@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+study_planner.db
+
+# Node / Frontend
+node_modules/
+dist/
+.env
+.env.local
+
+# IDEs & System
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
