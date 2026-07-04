@@ -1,6 +1,8 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from typing import Optional
+from pydantic import field_validator
+import json
 
 
 class Settings(BaseSettings):
@@ -26,6 +28,20 @@ class Settings(BaseSettings):
         "http://localhost:4173",
         "http://localhost:3000",
     ]
+
+    @field_validator("BACKEND_CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: any) -> list[str]:
+        if isinstance(v, str) and not v.startswith("["):
+            return [i.strip() for i in v.split(",") if i.strip()]
+        elif isinstance(v, (list, str)):
+            if isinstance(v, str):
+                try:
+                    return json.loads(v)
+                except Exception:
+                    return [v]
+            return v
+        return v
 
     @property
     def use_sqlite(self) -> bool:
