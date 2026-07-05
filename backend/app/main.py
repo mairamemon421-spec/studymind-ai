@@ -1,12 +1,16 @@
 """StudyMind AI — FastAPI application entry point."""
+import logging
+import traceback
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import get_settings
 from app.database import init_db
 
 settings = get_settings()
+logger = logging.getLogger("app")
 
 
 @asynccontextmanager
@@ -33,6 +37,20 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+
+@app.middleware("http")
+async def exception_logging_middleware(request: Request, call_next):
+    try:
+        return await call_next(request)
+    except Exception as e:
+        logger.error(f"Unhandled exception during request {request.url.path}: {e}")
+        logger.error(traceback.format_exc())
+        return JSONResponse(
+            status_code=500,
+            content={"detail": "Internal Server Error", "error": str(e)}
+        )
+
+
 # CORS
 app.add_middleware(
     CORSMiddleware,
@@ -53,6 +71,11 @@ app.include_router(quiz.router)
 app.include_router(logs.router)
 app.include_router(export.router)
 app.include_router(progress.router)
+
+
+@app.get("/")
+async def root():
+    return {"message": "StudyMind AI API is running"}
 
 
 @app.get("/api/health")
