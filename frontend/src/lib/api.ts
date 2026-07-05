@@ -6,7 +6,11 @@ const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+let rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+if (rawBaseUrl && !rawBaseUrl.endsWith('/api') && !rawBaseUrl.endsWith('/api/')) {
+  rawBaseUrl = rawBaseUrl.replace(/\/$/, '') + '/api';
+}
+const BASE_URL = rawBaseUrl;
 
 // Helper to get auth headers containing Supabase JWT session token
 async function getHeaders() {
